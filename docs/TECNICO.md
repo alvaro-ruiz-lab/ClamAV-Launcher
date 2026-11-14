@@ -26,7 +26,9 @@ Solo usa `sudo` si faltan componentes del sistema, y antes pregunta.
 python3 clamav_launcher.py
 ```
 
-Los componentes del sistema que hacen falta, con nombres orientativos según el gestor de paquetes:
+Al arrancar, antes de cargar GTK, la app comprueba que estén PyGObject, GTK 3, VTE 2.91 y el soporte de Cairo. Si falta alguno, explica cuál y con qué comando instalarlo, en la terminal y también en una ventana si se abrió sin terminal, y no arranca. Si lo que falta es ClamAV, la app sí arranca y ofrece instalarlo con su botón.
+
+Los componentes del sistema que hacen falta, con nombres orientativos según el gestor de paquetes (son los mismos que instala `install.sh` y que sugiere la app):
 
 | Gestor | Comando |
 |---|---|

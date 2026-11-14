@@ -20,6 +20,16 @@ La ventana tiene una terminal y unos botones. Cada botón **escribe** un comando
 
 Al terminar, busca **ClamAV Launcher** en tu lanzador de aplicaciones y ábrela como cualquier otra app. La carpeta descargada ya no hace falta: puedes borrarla.
 
+### Sin instalar (portable)
+
+Si prefieres no instalarla, abre una terminal en la carpeta descargada y escribe:
+
+```bash
+python3 clamav_launcher.py
+```
+
+La app se abre sin añadir nada al lanzador. Eso sí, tu sistema tiene que tener ya los componentes que necesita (GTK, VTE y ClamAV). Si falta alguno, la app te dirá cuál y cómo instalarlo.
+
 ## Uso
 
 1. **Actualizar firmas**: descarga la lista de virus más reciente. Hazlo antes de cada revisión.

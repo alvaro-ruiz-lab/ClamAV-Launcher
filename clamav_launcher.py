@@ -15,10 +15,89 @@ import math
 import os
 import shlex
 import shutil
+import sys
 import time
 
-import cairo
-import gi
+
+# ---------------------------------------------------------------------------
+# Componentes del sistema: se comprueban antes de importar GTK, para que la
+# version portable explique que falta en lugar de fallar con un error tecnico
+# ---------------------------------------------------------------------------
+
+# Los mismos paquetes que instala install.sh (nunca el demonio clamd)
+PAQUETES_SISTEMA = (
+    ("apt", "sudo apt install --no-install-recommends python3-gi python3-gi-cairo "
+            "gir1.2-gtk-3.0 gir1.2-vte-2.91 clamav clamav-freshclam"),
+    ("dnf", "sudo dnf install --setopt=install_weak_deps=False python3-gobject gtk3 "
+            "vte291 clamav clamav-freshclam"),
+    ("pacman", "sudo pacman -S --needed python-gobject python-cairo gtk3 vte3 clamav"),
+    ("zypper", "sudo zypper install --no-recommends python3-gobject python3-gobject-cairo "
+               "typelib-1_0-Gtk-3_0 typelib-1_0-Vte-2_91 clamav"),
+)
+
+
+def componentes_que_faltan():
+    """Nombres (para el usuario) de los componentes imprescindibles que faltan.
+
+    ClamAV no esta aqui: sin el, la app arranca y ofrece instalarlo.
+    """
+    try:
+        import gi as modulo_gi
+    except ImportError:
+        return ["PyGObject (Python con GTK)", "GTK 3", "VTE 2.91 (la terminal)"]
+    import importlib
+
+    faltan = []
+    for nombre, version, texto in (("Gtk", "3.0", "GTK 3"),
+                                   ("Vte", "2.91", "VTE 2.91 (la terminal)")):
+        try:
+            modulo_gi.require_version(nombre, version)
+            importlib.import_module("gi.repository." + nombre)
+        except (ImportError, ValueError):
+            faltan.append(texto)
+    try:
+        import cairo  # noqa: F401
+        modulo_gi.require_foreign("cairo")
+    except (ImportError, AttributeError):
+        faltan.append("Soporte de Cairo para PyGObject")
+    return faltan
+
+
+def avisar_componentes_que_faltan(faltan):
+    comando = next((orden for gestor, orden in PAQUETES_SISTEMA if shutil.which(gestor)), None)
+    lineas = ["Faltan estos componentes del sistema:", ""]
+    lineas += ["  - " + nombre for nombre in faltan]
+    lineas.append("")
+    if comando:
+        lineas += ["Para instalarlos, ejecuta en una terminal:", "", "    " + comando, ""]
+        lineas.append("También puedes usar el instalador de la app: bash install.sh")
+    else:
+        lineas.append("Instálalos con el gestor de software de tu sistema.")
+    cuerpo = "\n".join(lineas)
+    print("ClamAV Launcher no puede arrancar.\n\n" + cuerpo, file=sys.stderr)
+    # Sin terminal (abierta desde el lanzador) el texto no se veria: si GTK
+    # esta disponible, se muestra tambien en una ventana
+    if not sys.stderr.isatty():
+        try:
+            import gi as modulo_gi
+            modulo_gi.require_version("Gtk", "3.0")
+            from gi.repository import Gtk as modulo_gtk
+        except (ImportError, ValueError):
+            return
+        dialogo = modulo_gtk.MessageDialog(
+            message_type=modulo_gtk.MessageType.ERROR, buttons=modulo_gtk.ButtonsType.CLOSE,
+            text="ClamAV Launcher no puede arrancar")
+        dialogo.format_secondary_text(cuerpo)
+        dialogo.run()
+
+
+_FALTAN = componentes_que_faltan()
+if _FALTAN:
+    avisar_componentes_que_faltan(_FALTAN)
+    sys.exit(1)
+
+import cairo  # noqa: E402
+import gi  # noqa: E402
 
 gi.require_version("Gdk", "3.0")
 gi.require_version("Gtk", "3.0")
