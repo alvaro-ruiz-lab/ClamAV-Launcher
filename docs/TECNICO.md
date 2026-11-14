@@ -7,14 +7,14 @@ Para quien quiera saber cómo está hecha la app o modificarla. Para instalarla 
 | Archivo | Para qué sirve |
 |---|---|
 | `clamav_launcher.py` | La aplicación entera (Python 3 + GTK 3 + VTE 2.91, sin dependencias de pip). |
-| `instalar.sh` | Comprueba los componentes del sistema (y ofrece instalarlos) y copia la app a la carpeta personal del usuario. |
-| `desinstalar.sh` | Quita lo que instaló `instalar.sh`. |
+| `install.sh` | Comprueba los componentes del sistema (y ofrece instalarlos) y copia la app a la carpeta personal del usuario. |
+| `uninstall.sh` | Quita lo que instaló `install.sh`. |
 | `clamav-launcher.svg` | Icono del lanzador de aplicaciones. |
 | `LICENSE` | Licencia MIT. |
 
-`instalar.sh` no necesita permisos de administrador para la app. Instala estos archivos dentro de `~/.local/share` (o de `$XDG_DATA_HOME`):
+`install.sh` no necesita permisos de administrador para la app. Instala estos archivos dentro de `~/.local/share` (o de `$XDG_DATA_HOME`):
 
-- `clamav-launcher/clamav_launcher.py` y `clamav-launcher/desinstalar.sh` (para desinstalar aunque se haya borrado la descarga)
+- `clamav-launcher/clamav_launcher.py` y `clamav-launcher/uninstall.sh` (para desinstalar aunque se haya borrado la descarga)
 - `applications/clamav-launcher.desktop`: la entrada del lanzador de aplicaciones, con la ruta de la app.
 - `icons/hicolor/scalable/apps/clamav-launcher.svg`
 

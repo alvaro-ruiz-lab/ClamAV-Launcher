@@ -2,7 +2,7 @@
 
 Aplicación de escritorio para Linux (Python 3 + GTK3 + VTE 2.91, sin dependencias de pip): una terminal real con una barra lateral de botones que **solo escriben** comandos de ClamAV en la terminal. Nunca ejecutan nada por su cuenta; el usuario pulsa Ejecutar (Enter) o Parar (Ctrl+C).
 
-- Toda la app está en `clamav_launcher.py`. Se instala con `instalar.sh` (copia la app a `~/.local/share` y genera la entrada del lanzador) y se quita con `desinstalar.sh`.
+- Toda la app está en `clamav_launcher.py`. Se instala con `install.sh` (copia la app a `~/.local/share` y genera la entrada del lanzador) y se quita con `uninstall.sh`.
 - `README.md` es para usuarios sin conocimientos técnicos: corto y sencillo. Lo técnico (decisiones, rendimiento, paquetes) va en `docs/TECNICO.md`.
 - `docs/captura.png` es la captura del README: con datos neutros (`usuario@equipo`, `/media/usuario/...`), nunca datos personales.
 

@@ -841,7 +841,7 @@ class VentanaLauncher(Gtk.Window):
 
     def __init__(self):
         super().__init__(title=NOMBRE_APP)
-        self.set_icon_name("clamav-launcher")  # lo instala instalar.sh
+        self.set_icon_name("clamav-launcher")  # lo instala install.sh
         self.set_default_size(1200, 800)
         self.set_size_request(1000, 640)
 

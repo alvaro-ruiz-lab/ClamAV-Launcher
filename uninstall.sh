@@ -2,7 +2,7 @@
 # Quita ClamAV Launcher del usuario actual. No toca ClamAV, ni tus ajustes,
 # ni las carpetas de cuarentena e informes.
 #
-# Uso: bash desinstalar.sh
+# Uso: bash uninstall.sh
 
 set -euo pipefail
 

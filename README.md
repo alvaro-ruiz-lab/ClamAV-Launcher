@@ -13,7 +13,7 @@ La ventana tiene una terminal y unos botones. Cada botón **escribe** un comando
 3. **Escribe esto y pulsa Enter**:
 
    ```bash
-   bash instalar.sh
+   bash install.sh
    ```
 
    Si a tu sistema le falta algo (por ejemplo, el propio ClamAV), el instalador te dirá qué va a instalar y te pedirá permiso y tu contraseña.
@@ -40,14 +40,14 @@ Si pasas el ratón por encima de un botón, verás qué comando escribe y para q
 
 **¿La app ve mi contraseña?** No. La pide el propio sistema en la terminal, solo para actualizar firmas o instalar ClamAV. La app nunca la ve ni la guarda.
 
-**¿Cómo la actualizo?** Descarga la versión nueva y vuelve a ejecutar `bash instalar.sh`.
+**¿Cómo la actualizo?** Descarga la versión nueva y vuelve a ejecutar `bash install.sh`.
 
 ## Desinstalar
 
 Abre una terminal (en cualquier carpeta) y escribe:
 
 ```bash
-bash ~/.local/share/clamav-launcher/desinstalar.sh
+bash ~/.local/share/clamav-launcher/uninstall.sh
 ```
 
 ClamAV y tus carpetas de cuarentena e informes no se tocan.

@@ -3,7 +3,7 @@
 # aplicaciones. Solo pide la contrasena (sudo) si falta algun componente del
 # sistema, y antes de instalarlo pregunta.
 #
-# Uso: bash instalar.sh
+# Uso: bash install.sh
 
 set -euo pipefail
 
@@ -61,10 +61,12 @@ if faltan_componentes; then
     fi
 fi
 
-# Archivos de la app, icono y entrada del lanzador (todo dentro de tu carpeta personal)
+# Archivos de la app, icono y entrada del lanzador (todo dentro de tu carpeta personal).
+# La carpeta de la app se vacia antes, para no dejar restos de versiones anteriores.
+rm -rf "$CARPETA_APP"
 mkdir -p "$CARPETA_APP" "$(dirname "$ARCHIVO_DESKTOP")" "$(dirname "$ARCHIVO_ICONO")"
 cp clamav_launcher.py "$CARPETA_APP/"
-cp desinstalar.sh "$CARPETA_APP/"  # para desinstalar aunque se borre la descarga
+cp uninstall.sh "$CARPETA_APP/"  # para desinstalar aunque se borre la descarga
 cp clamav-launcher.svg "$ARCHIVO_ICONO"
 
 cat > "$ARCHIVO_DESKTOP" <<EOF
