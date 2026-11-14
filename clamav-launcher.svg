@@ -1,5 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <rect width="64" height="64" fill="#15181b"/>
-  <path d="M32 10.4l19.2 7.2V32L32 53.6 12.8 32V17.6z" fill="none" stroke="#f0645c" stroke-width="4.8" stroke-linecap="square" stroke-linejoin="miter"/>
-  <path d="M23.6 32l6 6 10.8-12" fill="none" stroke="#f0645c" stroke-width="4.8" stroke-linecap="square" stroke-linejoin="miter"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <!-- Fondo: cuadrado oscuro con esquinas redondeadas y un borde sutil -->
+  <rect x="8" y="8" width="112" height="112" rx="26" fill="#181c1f"/>
+  <rect x="8.75" y="8.75" width="110.5" height="110.5" rx="25.25" fill="none" stroke="#2e3439" stroke-width="1.5"/>
+  <g transform="translate(0 6)">
+    <!-- Cuernos angulares que salen de los lados superiores del escudo -->
+    <path d="M41 42L34 30.5 30.5 15 40.5 27.5 50.5 38.5z" fill="#f0645c"/>
+    <path d="M87 42L94 30.5 97.5 15 87.5 27.5 77.5 38.5z" fill="#f0645c"/>
+    <!-- Escudo con check, el mismo trazo cuadrado que el icono de la app -->
+    <path d="M64 33.4l27.2 10.2V64L64 94.6 36.8 64V43.6z" fill="#3a1714" stroke="#f0645c" stroke-width="6.8" stroke-linecap="square" stroke-linejoin="miter"/>
+    <path d="M52.1 64l8.5 8.5 15.3-17" fill="none" stroke="#f0645c" stroke-width="6.8" stroke-linecap="square" stroke-linejoin="miter"/>
+  </g>
 </svg>

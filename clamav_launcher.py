@@ -18,6 +18,13 @@ import shutil
 import sys
 import time
 
+# Version de la app: se muestra en la barra de titulo y con --version
+VERSION = "1.0"
+
+if "--version" in sys.argv[1:]:
+    print("ClamAV Launcher " + VERSION)
+    sys.exit(0)
+
 
 # ---------------------------------------------------------------------------
 # Componentes del sistema: se comprueban antes de importar GTK, para que la
@@ -575,6 +582,7 @@ decoration { border-radius: 0; box-shadow: 0 0 0 1px #313a40; }
 headerbar { background-image: none; background-color: #201a1b; min-height: 40px; padding: 0 0 0 16px; border: none; border-bottom: 1px solid #2e2426; box-shadow: none; }
 headerbar .icono-escudo { color: #f0645c; }
 headerbar .titulo-app { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; color: #e6eaec; }
+headerbar .version-app { font-family: FUENTE_MONO; font-size: 11px; letter-spacing: 0.06em; color: #6b7780; }
 headerbar .boton-ventana { background-color: transparent; border: none; min-width: 46px; min-height: 40px; padding: 0; margin: 0; }
 headerbar .boton-ventana .icono { color: #8b969c; }
 headerbar .boton-ventana:hover { background-color: #2c2224; }
@@ -696,8 +704,11 @@ scrollbar slider { min-width: 6px; min-height: 6px; border: none; background-col
 # Cada forma es una lista de (cerrada, puntos).
 FORMAS_ICONO = {
     "escudo": [
-        (True, [(12, 3), (20, 6), (20, 12), (12, 21), (4, 12), (4, 6)]),
-        (False, [(8.5, 12), (11, 14.5), (15.5, 9.5)]),
+        # Escudo con cuernos (version reducida del icono del lanzador)
+        (True, [(6.25, 8.1), (4.5, 5.23), (3.63, 1.35), (6.13, 4.48), (8.62, 7.22)]),
+        (True, [(17.75, 8.1), (19.5, 5.23), (20.37, 1.35), (17.87, 4.48), (15.38, 7.22)]),
+        (True, [(12, 5.95), (18.8, 8.5), (18.8, 13.6), (12, 21.25), (5.2, 13.6), (5.2, 8.5)]),
+        (False, [(9.03, 13.6), (11.15, 15.72), (14.97, 11.47)]),
     ],
     "firmas": [
         (False, [(4, 8), (17, 8), (14, 5)]),
@@ -989,6 +1000,9 @@ class VentanaLauncher(Gtk.Window):
         titulo = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=12)
         titulo.pack_start(anadir_clases(Icono("escudo", 18), "icono-escudo"), False, False, 0)
         titulo.pack_start(etiqueta("CLAMAV LAUNCHER", "titulo-app"), False, False, 0)
+        version = etiqueta("v" + VERSION, "version-app")
+        version.set_tooltip_text("Versión instalada de ClamAV Launcher")
+        titulo.pack_start(version, False, False, 0)
         barra.pack_start(titulo)
         barra.set_custom_title(Gtk.Box())  # sin titulo centrado
         self.set_titlebar(barra)

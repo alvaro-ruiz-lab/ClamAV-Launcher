@@ -20,6 +20,14 @@ Para quien quiera saber cómo está hecha la app o modificarla. Para instalarla 
 
 Solo usa `sudo` si faltan componentes del sistema, y antes pregunta.
 
+## Versión
+
+La versión está en la constante `VERSION` de `clamav_launcher.py` (ahora `1.0`). Se muestra junto al título de la ventana y con:
+
+```bash
+python3 clamav_launcher.py --version
+```
+
 ## Ejecutar sin instalar
 
 ```bash

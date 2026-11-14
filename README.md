@@ -2,6 +2,8 @@
 
 Revisa tus USB y archivos en busca de virus con [ClamAV](https://www.clamav.net/), sin necesidad de saber usar la terminal. Para Linux.
 
+**Versión 1.0**. La versión instalada aparece junto al título de la ventana.
+
 ![Ventana de ClamAV Launcher](docs/captura.png)
 
 La ventana tiene una terminal y unos botones. Cada botón **escribe** un comando en la terminal, pero no lo lanza: tú lo ves y pulsas **Ejecutar** cuando quieras. Así nunca pasa nada sin que lo decidas y, de paso, aprendes qué hace cada comando.
@@ -61,6 +63,10 @@ bash ~/.local/share/clamav-launcher/uninstall.sh
 ```
 
 ClamAV y tus carpetas de cuarentena e informes no se tocan.
+
+## Mantenimiento
+
+Es un proyecto personal sin mantenimiento activo. Si encuentras un problema, puedes avisar en [Issues](https://github.com/alvaro-ruiz-lab/ClamAV-Launcher/issues), pero puede tardar en tener respuesta o no tenerla.
 
 ## Licencia
 
